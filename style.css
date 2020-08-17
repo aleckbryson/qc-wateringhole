@@ -1,8 +1,3 @@
-h1 {
-    font-family: 'Bangers', cursive;
-    font-size: 70px;
-}
-
 #body {
     font-family: 'Bangers', cursive;
     font-size: 100px;
@@ -10,11 +5,15 @@ h1 {
 
 #body-text {
     font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
 }
 
 #logo {
-    font-family: 'Bangers', cursive;
-    font-size: 40px;
+    font-family: 'Staatliches', cursive;
+    font-size: 35px;
     color: white;
+}
+
+#beer-button {
+    font-size: 25px;
 }
