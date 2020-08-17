@@ -28,3 +28,7 @@
 .panel-block {
     background-color: white;
 }
+
+#show-options {
+    position: relative; bottom: 70px;
+}
