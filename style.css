@@ -17,3 +17,14 @@
 #beer-button {
     font-size: 25px;
 }
+
+#beer-header {
+    font-size: 35px;
+    font-family: 'Bangers', cursive;
+    background-color: lightgray;
+    color: black;
+}
+
+.panel-block {
+    background-color: white;
+}
