@@ -15,8 +15,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bangers&family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     
-    
     <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/backEndScript.js"></script>
+
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 50%;
+        width: 50%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style> 
 </head>
 
 <body>
@@ -67,14 +82,8 @@
                         <p class="panel-heading" id="beer-header">
                           YOUR BEER OPTIONS!
                         </p>
-                        <div class="panel-block">
-                          <p class="control has-icons-left">
-                            <input class="input" type="text" placeholder="Search">
-                            <span class="icon is-left">
-                              <i class="fas fa-search" aria-hidden="true"></i>
-                            </span>
-                          </p>
-                        </div>
+                        <div id="map"></div>
+                       
                         <a class="panel-block is-active" id="beer-option1">
                           <span class="panel-icon">
                             <i class="fa fa-beer" aria-hidden="true"></i>
@@ -134,6 +143,11 @@
         //     $(".show-options").addClass("is-hidden");
         // });
 
+        
+
+    </script>
+    <script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALpzkW8PTJ7k9963498EIvN2uIgfIuYgI&callback=initMap">
     </script>
 </body>
 <footer>© 2020 Queen City Watering Hole</footer>

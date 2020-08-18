@@ -32,21 +32,10 @@ function initMap() {
         title: response[i].name,
         icon: fullBeer,
 
-        if ( latLng = null) {
-          marker.setMap(null);
-        }
-       
-        
-
-        
       });
     }
   });
-  // const beachMarker = new google.maps.Marker({
-  //   position: { lat: -33.89, lng: 151.274 },
-  //   map,
-  //   icon: image
-  // });
+ 
 
   // get user's location and create marker
   navigator.geolocation.getCurrentPosition(function (position) {
