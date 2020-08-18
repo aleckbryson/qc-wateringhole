@@ -7,10 +7,10 @@ function initMap() {
     mapTypeId: 'terrain'
   });
   
-  const fullBeer =
-    "./beer.png";
+  const fullBeer = "./assets/img/beer.png"
+   
 
-  const emptyBeer = "./emptybeer.png";
+  const emptyBeer = "./assets/img/emptybeer.png";
 
 
   var queryURL = "https://api.openbrewerydb.org/breweries?by_city=charlotte"
@@ -32,9 +32,10 @@ function initMap() {
         title: response[i].name,
         icon: fullBeer,
 
-        if ( latLng = null,
-
-        )
+        if ( latLng = null) {
+          marker.setMap(null);
+        }
+       
         
 
         
