@@ -1,0 +1,50 @@
+#body {
+    font-family: 'Bangers', cursive;
+    font-size: 100px;
+    position: relative;
+}
+
+#body-text {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 30px;
+}
+
+#logo {
+    font-family: 'Staatliches', cursive;
+    font-size: 35px;
+    color: white;
+    background-color:rgb(207, 36, 36);
+    
+}
+
+#beer-button {
+    font-size: 25px;
+}
+
+#beer-header {
+    font-size: 35px;
+    font-family: 'Bangers', cursive;
+    background-color: lightgray;
+    color: black;
+}
+
+.panel-block {
+    background-color: white;
+}
+
+#show-options {
+    position: relative; bottom: 90px;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color:rgb(207, 36, 36);
+    color: white;
+    text-align: center;
+    padding-bottom: 20px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 21px;
+}
