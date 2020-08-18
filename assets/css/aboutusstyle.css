@@ -1,0 +1,9 @@
+body,html {
+    background-image: url(../img/cheers.jpg);
+    background-repeat: no-repeat, no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    
+}
+
