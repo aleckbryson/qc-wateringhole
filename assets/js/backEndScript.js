@@ -2,12 +2,20 @@ var map;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 2,
-    center: new google.maps.LatLng(2.8, -187.3),
+    zoom: 10.5,
+    center: new google.maps.LatLng(35.223790, -80.841140),
     mapTypeId: 'terrain'
+
+
   });
+  const fullBeer =
+    "./beer.png";
+
+  const emptyBeer = "./emptybeer.png";
+
 
   var queryURL = "https://api.openbrewerydb.org/breweries?by_city=charlotte"
+
 
   // creates markers for breweries
   $.ajax({
@@ -16,15 +24,22 @@ function initMap() {
   }).then(function (response) {
     console.log(response);
 
+    console.log('image')
     for (var i = 0; i < response.length; i++) {
       var latLng = new google.maps.LatLng(response[i].latitude, response[i].longitude);
       var marker = new google.maps.Marker({
         position: latLng,
         map: map,
-        title: response[i].name
+        title: response[i].name,
+        icon: fullBeer,
       });
     }
   });
+  // const beachMarker = new google.maps.Marker({
+  //   position: { lat: -33.89, lng: 151.274 },
+  //   map,
+  //   icon: image
+  // });
 
   // get user's location and create marker
   navigator.geolocation.getCurrentPosition(function (position) {
@@ -34,7 +49,9 @@ function initMap() {
     var marker = new google.maps.Marker({
       position: latLng,
       map: map,
-      title: "You Are Here"
+      title: "You Are Here",
+      icon: emptyBeer,
+
     });
   });
 }
@@ -69,7 +86,7 @@ function initMap() {
 //   console.log(response[0])
 //   console.log(brewObj)
 //   initMap(response)
-  
+
 // });
 
 //   // Note: This example requires that you consent to location sharing when
