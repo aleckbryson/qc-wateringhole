@@ -9,3 +9,12 @@ body,html {
      
 }
 
+#image-row {
+    width: auto;
+    height: auto;
+}
+
+#footer-row {
+    text-align: center;
+    font-size: 30px;
+}
