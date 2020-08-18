@@ -5,9 +5,8 @@ function initMap() {
     zoom: 10.5,
     center: new google.maps.LatLng(35.223790, -80.841140),
     mapTypeId: 'terrain'
-
-
   });
+  
   const fullBeer =
     "./beer.png";
 
@@ -32,6 +31,13 @@ function initMap() {
         map: map,
         title: response[i].name,
         icon: fullBeer,
+
+        if ( latLng = null,
+
+        )
+        
+
+        
       });
     }
   });
