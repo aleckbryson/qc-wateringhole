@@ -1,4 +1,38 @@
 var map;
+const fullBeer = "./assets/img/beer.png"
+const emptyBeer = "./assets/img/emptybeer.png";
+
+function createMarker(brewery) {
+  var latLng = new google.maps.LatLng(brewery.latitude, brewery.longitude);
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map,
+    title: brewery.name,
+    icon: fullBeer,
+  });
+}
+
+function createRow(brewery) {
+  // <a class="panel-block" id="beer-option1">
+  //   <span class="panel-icon">
+  //     <i class="fa fa-beer" aria-hidden="true"></i>
+  //   </span>
+  //   Brewery Name
+  // </a>
+  var newLink = $("<a>");
+  newLink.addClass("panel-block");
+  newLink.text(brewery.name);
+  $("#breweries").append(newLink);
+
+  var newSpan = $("<span>");
+  newSpan.addClass("panel-icon");
+  newLink.prepend(newSpan);
+
+  var newIcon = $("<i>");
+  newIcon.addClass("fa fa-beer");
+  newIcon.attr("aria-hidden", "true");
+  newSpan.append(newIcon);
+}
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -6,12 +40,6 @@ function initMap() {
     center: new google.maps.LatLng(35.223790, -80.841140),
     mapTypeId: 'terrain'
   });
-  
-  const fullBeer =
-    "./beer.png";
-
-  const emptyBeer = "./emptybeer.png";
-
 
   var queryURL = "https://api.openbrewerydb.org/breweries?by_city=charlotte"
 
@@ -25,46 +53,30 @@ function initMap() {
 
     console.log('image')
     for (var i = 0; i < response.length; i++) {
-      var latLng = new google.maps.LatLng(response[i].latitude, response[i].longitude);
-      var marker = new google.maps.Marker({
-        position: latLng,
-        map: map,
-        title: response[i].name,
-        icon: fullBeer,
-
-        if ( latLng = null,
-
-        )
-        
-
-        
-      });
+      if (response[i].state === "North Carolina" && response[i].latitude !== null && response[i].longitude !== null) {
+        createMarker(response[i]);
+        createRow(response[i]);
+      }
     }
   });
-  // const beachMarker = new google.maps.Marker({
-  //   position: { lat: -33.89, lng: 151.274 },
-  //   map,
-  //   icon: image
-  // });
+ 
 
   // get user's location and create marker
   navigator.geolocation.getCurrentPosition(function (position) {
     console.log(position);
 
     var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+   
     var marker = new google.maps.Marker({
       position: latLng,
       map: map,
       title: "You Are Here",
       icon: emptyBeer,
 
+   
     });
   });
 }
-
-
-
-
 
 
 
