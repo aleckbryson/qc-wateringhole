@@ -53,3 +53,8 @@ footer {
     font-family: 'Bangers', cursive;
     font-size: 25px;
 }
+
+#map {
+    height: 300px;
+    margin: 0 auto;
+  }
