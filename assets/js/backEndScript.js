@@ -13,12 +13,7 @@ function createMarker(brewery) {
 }
 
 function createRow(brewery) {
-  // <a class="panel-block" id="beer-option1">
-  //   <span class="panel-icon">
-  //     <i class="fa fa-beer" aria-hidden="true"></i>
-  //   </span>
-  //   Brewery Name
-  // </a>
+
   var newLink = $("<a>");
   newLink.addClass("panel-block");
   newLink.text(brewery.name);
@@ -63,7 +58,7 @@ function initMap() {
 
   // get user's location and create marker
   navigator.geolocation.getCurrentPosition(function (position) {
-    console.log(position);
+    // console.log(position);
 
     var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
    
