@@ -1,9 +1,11 @@
 var map;
+var breweries;
 var userPos = null;
 const fullBeer = "./assets/img/beer.png"
 const emptyBeer = "./assets/img/emptybeer.png";
 var beerLat;
 var beerLon;
+
 function createMarker(brewery) {
   var latLng = new google.maps.LatLng(brewery.latitude, brewery.longitude);
   var marker = new google.maps.Marker({
@@ -66,7 +68,9 @@ function queryBreweries() {
     url: queryURL,
     method: "GET"
   }).then(function (response) {
-    //for (var i = 0; i < response.length; i++) {
+    console.log(response);
+
+    breweries = response;
     for (let i = 0; i < response.length; i++) {
       let brewery = response[i];
 
@@ -83,7 +87,58 @@ function queryBreweries() {
       }
     }
   });
+
+  // create a button to randomaly pick a brewery
+  //use id="random-button"
+
+  
+
+
+  // show brewery on the screen
+  // get user's location and create marker
+  navigator.geolocation.getCurrentPosition(function (position) {
+    console.log(position);
+
+    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+    var marker = new google.maps.Marker({
+      position: latLng,
+      map: map,
+      title: "You Are Here",
+      icon: emptyBeer,
+
+
+    });
+  });
 }
+
+function randomBrewery() {
+  // need to pick from the previously generated list of breweries 
+  var brewery = breweries[Math.floor(Math.random() * breweries.length)];
+  console.log(brewery)
+  var newBrew = $("<p>");
+  newBrew.addClass("title is-4");
+  newBrew.text(brewery.name);
+  $("#random-brewname").append(newBrew);
+
+  // var newLink = $("<a>");
+  // newLink.addClass("panel-block");
+  // newLink.text(brewery.name);
+  // $("#breweries").append(newLink);
+
+  // console.log(breweryName);
+}
+
+$("#beer-button").on("click", function () {
+  $(".clicked").addClass("is-hidden");
+  $(".show-options").addClass("is-flex-widescreen").removeClass("is-hidden");
+});
+
+$("#random-button").on("click", function () {
+  $(".show-options").addClass("is-hidden");
+  $(".random-option").addClass("is-flex-widescreen").removeClass("is-hidden");
+  randomBrewery()
+});
 
 // get user's location and create marker
 navigator.geolocation.getCurrentPosition(function (position) {
