@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+    #map {
+      height: 50%;
+      width: 50%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+  <script>
+    jQuery.ajaxPrefilter(function(options) {
+      if (options.crossDomain && jQuery.support.cors) {
+          options.url = 'https://uncc-cors-proxy.herokuapp.com/' + options.url;
+      }
+    });
+  </script>
+  <script src="./js.js"></script>
+  
+</head>
+<body>
+  <h1>Open the console</h1>
+  <p>test</p>
+  <div id="map"></div>
+
+
+
+  
+<script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALpzkW8PTJ7k9963498EIvN2uIgfIuYgI&callback=initMap">
+    </script>
+</body>
+
+</html>
