@@ -118,21 +118,21 @@ function randomBrewery() {
   console.log(brewery)
   var newBrew = $("<p>");
   var brewCon = $("<div>")
-  var website = $("<div>")
+  var website = $("<a>")
   newBrew.addClass("title is-4");
   newBrew.text(brewery.name);
   brewCon.addClass("content");
-  brewCon.text(brewery.street + ", " + brewery.city + ", " + brewery.state);
-  // website.addClass("content");
-  // website.text(brewery.website_url);
-
+  brewCon.text("ADDRESS:  " + brewery.street + ", " + brewery.city + ", " + brewery.state);
+  website.addClass("content");
+  
   $("#random-brewname").append(newBrew);
   $("#brewname-content").append(brewCon);
-  $("#brewname-content").append(brewCon);
-
   
-
-
+  if (brewery.website_url !== "") {
+    website.text("WEBSITE:  " + brewery.website_url);
+    $("#brewname-content2").attr("href", brewery.website_url);
+    $("#brewname-content2").append(website);
+  }
 }
 
 $("#beer-button").on("click", function () {
