@@ -58,4 +58,19 @@ footer {
 #map {
     height: 300px;
     margin: 0 auto;
-  }
+}
+
+#random-brewname {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 35px;
+    font-weight: 1100;
+}
+
+#brewname-content {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 25px;
+}
+
+.panel-card {
+    position: relative; bottom: 90px;
+}
