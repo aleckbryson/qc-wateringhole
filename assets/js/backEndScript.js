@@ -1,7 +1,9 @@
 var map;
+var userPos = null;
 const fullBeer = "./assets/img/beer.png"
 const emptyBeer = "./assets/img/emptybeer.png";
-
+var beerLat;
+var beerLon;
 function createMarker(brewery) {
   var latLng = new google.maps.LatLng(brewery.latitude, brewery.longitude);
   var marker = new google.maps.Marker({
@@ -13,10 +15,11 @@ function createMarker(brewery) {
 }
 
 function createRow(brewery) {
-
   var newLink = $("<a>");
+  newLink.attr("href", "https://www.google.com/maps/dir/?api=1&origin=" + userPos.coords.latitude + "," + userPos.coords.longitude + "&destination=" + brewery.latitude + "," +brewery.longitude)
+  newLink.attr("target", "_blank");
   newLink.addClass("panel-block");
-  newLink.text(brewery.name);
+  newLink.text(brewery.name + " " + brewery.durationFromUser + " away from you");
   $("#breweries").append(newLink);
 
   var newSpan = $("<span>");
@@ -27,6 +30,8 @@ function createRow(brewery) {
   newIcon.addClass("fa fa-beer");
   newIcon.attr("aria-hidden", "true");
   newSpan.append(newIcon);
+
+
 }
 
 function initMap() {
@@ -35,130 +40,65 @@ function initMap() {
     center: new google.maps.LatLng(35.223790, -80.841140),
     mapTypeId: 'terrain'
   });
+}
 
+function calcDistance(brewery, cb) {
+  if (userPos === null) {
+    return alert("No position yet");
+  }
+
+  var queryUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + userPos.coords.latitude + "," + userPos.coords.longitude + "&destinations=" + brewery.latitude + "," + brewery.longitude + "&key=AIzaSyALpzkW8PTJ7k9963498EIvN2uIgfIuYgI";
+  beerLat = brewery.latitude;
+  beerLon = brewery.longitude;
+  $.ajax({
+    url: queryUrl,
+    method: "GET"
+  }).then(function (response) {
+    cb(response);
+  });
+}
+
+function queryBreweries() {
   var queryURL = "https://api.openbrewerydb.org/breweries?by_city=charlotte"
-
 
   // creates markers for breweries
   $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function (response) {
-    console.log(response);
+    //for (var i = 0; i < response.length; i++) {
+    for (let i = 0; i < response.length; i++) {
+      let brewery = response[i];
 
-    console.log('image')
-    for (var i = 0; i < response.length; i++) {
-      if (response[i].state === "North Carolina" && response[i].latitude !== null && response[i].longitude !== null) {
-        createMarker(response[i]);
-        createRow(response[i]);
+      if (brewery.state === "North Carolina" &&
+        brewery.latitude !== null &&
+        brewery.longitude !== null) {
+        calcDistance(brewery, function (distance) {
+          brewery.distanceFromUser = distance.rows[0].elements[0].distance.text;
+          brewery.durationFromUser = distance.rows[0].elements[0].duration.text;
+          console.log(brewery);
+          createMarker(brewery);
+          createRow(brewery);
+        });
       }
     }
   });
- 
-
-  // get user's location and create marker
-  navigator.geolocation.getCurrentPosition(function (position) {
-    // console.log(position);
-
-    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-   
-    var marker = new google.maps.Marker({
-      position: latLng,
-      map: map,
-      title: "You Are Here",
-      icon: emptyBeer,
-
-   
-    });
-  });
 }
 
+// get user's location and create marker
+navigator.geolocation.getCurrentPosition(function (position) {
+  //console.log(position);
+  userPos = position;
 
+  var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
+  var marker = new google.maps.Marker({
+    position: latLng,
+    map: map,
+    title: "You Are Here",
+    icon: emptyBeer,
+  });
 
+  queryBreweries();
+});
 
-
-
-
-
-
-
-
-
-
-// var queryURL = "https://api.brewerydb.com/v2/beer/:beerId/breweries/?key=2db2db282e38ab26a08d62e2ed00dfe1";
-
-// var queryURL ="https://api.openbrewerydb.org/breweries?by_city=charlotte"
-// $.ajax({
-//   url: queryURL,
-//   method: "GET"
-// }).then(function(response) {
-//   // var res = (response)
-//   // var brewObj = JSON.stringify(response)
-//   console.log(response);
-//   console.log(response[0])
-//   console.log(brewObj)
-//   initMap(response)
-
-// });
-
-//   // Note: This example requires that you consent to location sharing when
-//       // prompted by your browser. If you see the error "The Geolocation service
-//       // failed.", it means you probably did not give permission for the browser to
-//       // locate you.
-//       var map, infoWindow;
-//       function initMap(response) {
-//         console.log(response)
-//         map = new google.maps.Map(document.getElementById('map'), {
-//           center: {lat: -34.397, lng: 150.644},
-//           zoom: 6
-//         });
-//         infoWindow = new google.maps.InfoWindow;
-
-//         // Try HTML5 geolocation.
-//         if (navigator.geolocation) {
-//           navigator.geolocation.getCurrentPosition(function(position) {
-//             var pos = {
-//               lat: response[0].latitude,
-//               lng: response[0].longitude
-//             };
-//             // lat: position.coords.latitude,
-//             // lng: position.coords.longitude
-
-//             infoWindow.setPosition(pos);
-//             infoWindow.setContent('Location found.');
-//             infoWindow.open(map);
-//             map.setCenter(pos);
-//           }, function() {
-//             handleLocationError(true, infoWindow, map.getCenter());
-//           });
-//         } else {
-//           // Browser doesn't support Geolocation
-//           handleLocationError(false, infoWindow, map.getCenter());
-//         }
-//       }
-
-//       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-//         infoWindow.setPosition(pos);
-//         infoWindow.setContent(browserHasGeolocation ?
-//                               'Error: The Geolocation service failed.' :
-//                               'Error: Your browser doesn\'t support geolocation.');
-//         infoWindow.open(map);
-//       }
-
-
-
-
-
-
-
-// $.ajax({
-//   url: "https://www.omdbapi.com/?t=romancing+the+stone&y=&plot=short&apikey=trilogy",
-//   method: "GET"
-// }).then(function(response) {
-//   console.log(response);
-// });
-
-
-// var G = ("hey")
-// console.log(G)
