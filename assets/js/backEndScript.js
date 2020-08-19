@@ -1,4 +1,5 @@
 var map;
+var breweries;
 const fullBeer = "./assets/img/beer.png"
 const emptyBeer = "./assets/img/emptybeer.png";
 
@@ -51,6 +52,8 @@ function initMap() {
   }).then(function (response) {
     console.log(response);
 
+    breweries = response;
+
     console.log('image')
     for (var i = 0; i < response.length; i++) {
       if (response[i].state === "North Carolina" && response[i].latitude !== null && response[i].longitude !== null) {
@@ -59,8 +62,19 @@ function initMap() {
       }
     }
   });
- 
 
+ // create a button to randomaly pick a brewery
+ //use id="random-button"
+ 
+function randomBrewery() {
+  // need to pick from the previously generated list of breweries 
+  var brewery = breweries[Math.floor(Math.random()*breweries.length)];
+  
+  function randomButton() {
+ document.getElementById("random-button");
+ console.log("random-button");}
+}
+ // show brewery on the screen
   // get user's location and create marker
   navigator.geolocation.getCurrentPosition(function (position) {
     console.log(position);
