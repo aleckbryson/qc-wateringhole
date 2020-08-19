@@ -117,16 +117,22 @@ function randomBrewery() {
   var brewery = breweries[Math.floor(Math.random() * breweries.length)];
   console.log(brewery)
   var newBrew = $("<p>");
+  var brewCon = $("<div>")
+  var website = $("<div>")
   newBrew.addClass("title is-4");
   newBrew.text(brewery.name);
+  brewCon.addClass("content");
+  brewCon.text(brewery.street + ", " + brewery.city + ", " + brewery.state);
+  // website.addClass("content");
+  // website.text(brewery.website_url);
+
   $("#random-brewname").append(newBrew);
+  $("#brewname-content").append(brewCon);
+  $("#brewname-content").append(brewCon);
 
-  // var newLink = $("<a>");
-  // newLink.addClass("panel-block");
-  // newLink.text(brewery.name);
-  // $("#breweries").append(newLink);
+  
 
-  // console.log(breweryName);
+
 }
 
 $("#beer-button").on("click", function () {
