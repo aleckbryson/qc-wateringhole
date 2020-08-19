@@ -25,3 +25,24 @@ App now shows the user a map with their location as well as the pinned locations
 
 <img scr = "./img/wheres-my-beer-map.PNG" alt = "Map with list of breweries">
 
+
+TECHNOLOGIES USED:
+
+Bulma.io-for the layout
+google maps api for user location, brewery directions and location
+openbrewery DB API for the list of locale breweries
+
+
+----------------------------------------------------
+
+Challenges: 
+The biggest challenges were working with the google api in order to track user location as well as supply the list of breweries in the area.
+Another major challenge was having full functionality of the "choose my beer" button to pick a random brewery for the USER
+
+-----------------------------------------------------
+
+
+git hub pages link : https://aleckbryson.github.io/qc-wateringhole/
+
+
+
