@@ -1,10 +1,7 @@
 var map;
-var breweries;
 var userPos = null;
 const fullBeer = "./assets/img/beer.png"
 const emptyBeer = "./assets/img/emptybeer.png";
-var beerLat;
-var beerLon;
 
 function createMarker(brewery) {
   var latLng = new google.maps.LatLng(brewery.latitude, brewery.longitude);
@@ -12,16 +9,15 @@ function createMarker(brewery) {
     position: latLng,
     map: map,
     title: brewery.name,
-    icon: fullBeer,
+    // icon: fullBeer,
   });
 }
 
 function createRow(brewery) {
   var newLink = $("<a>");
-  newLink.attr("href", "https://www.google.com/maps/dir/?api=1&origin=" + userPos.coords.latitude + "," + userPos.coords.longitude + "&destination=" + brewery.latitude + "," +brewery.longitude)
-  newLink.attr("target", "_blank");
   newLink.addClass("panel-block");
-  newLink.text(brewery.name + " " + brewery.durationFromUser + " away from you");
+  newLink.text(brewery.name);
+  newLink.text(brewery.distanceFromUser)
   $("#breweries").append(newLink);
 
   var newSpan = $("<span>");
@@ -32,8 +28,6 @@ function createRow(brewery) {
   newIcon.addClass("fa fa-beer");
   newIcon.attr("aria-hidden", "true");
   newSpan.append(newIcon);
-
-
 }
 
 function initMap() {
@@ -50,8 +44,7 @@ function calcDistance(brewery, cb) {
   }
 
   var queryUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=" + userPos.coords.latitude + "," + userPos.coords.longitude + "&destinations=" + brewery.latitude + "," + brewery.longitude + "&key=AIzaSyALpzkW8PTJ7k9963498EIvN2uIgfIuYgI";
-  beerLat = brewery.latitude;
-  beerLon = brewery.longitude;
+
   $.ajax({
     url: queryUrl,
     method: "GET"
@@ -68,18 +61,15 @@ function queryBreweries() {
     url: queryURL,
     method: "GET"
   }).then(function (response) {
-    console.log(response);
-
-    breweries = response;
+    //for (var i = 0; i < response.length; i++) {
     for (let i = 0; i < response.length; i++) {
       let brewery = response[i];
-
+      
       if (brewery.state === "North Carolina" &&
-        brewery.latitude !== null &&
-        brewery.longitude !== null) {
+          brewery.latitude !== null && 
+          brewery.longitude !== null) {
         calcDistance(brewery, function (distance) {
           brewery.distanceFromUser = distance.rows[0].elements[0].distance.text;
-          brewery.durationFromUser = distance.rows[0].elements[0].duration.text;
           console.log(brewery);
           createMarker(brewery);
           createRow(brewery);
@@ -87,58 +77,7 @@ function queryBreweries() {
       }
     }
   });
-
-  // create a button to randomaly pick a brewery
-  //use id="random-button"
-
-  
-
-
-  // show brewery on the screen
-  // get user's location and create marker
-  navigator.geolocation.getCurrentPosition(function (position) {
-    console.log(position);
-
-    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-    var marker = new google.maps.Marker({
-      position: latLng,
-      map: map,
-      title: "You Are Here",
-      icon: emptyBeer,
-
-
-    });
-  });
 }
-
-function randomBrewery() {
-  // need to pick from the previously generated list of breweries 
-  var brewery = breweries[Math.floor(Math.random() * breweries.length)];
-  console.log(brewery)
-  var newBrew = $("<p>");
-  newBrew.addClass("title is-4");
-  newBrew.text(brewery.name);
-  $("#random-brewname").append(newBrew);
-
-  // var newLink = $("<a>");
-  // newLink.addClass("panel-block");
-  // newLink.text(brewery.name);
-  // $("#breweries").append(newLink);
-
-  // console.log(breweryName);
-}
-
-$("#beer-button").on("click", function () {
-  $(".clicked").addClass("is-hidden");
-  $(".show-options").addClass("is-flex-widescreen").removeClass("is-hidden");
-});
-
-$("#random-button").on("click", function () {
-  $(".show-options").addClass("is-hidden");
-  $(".random-option").addClass("is-flex-widescreen").removeClass("is-hidden");
-  randomBrewery()
-});
 
 // get user's location and create marker
 navigator.geolocation.getCurrentPosition(function (position) {
@@ -151,9 +90,8 @@ navigator.geolocation.getCurrentPosition(function (position) {
     position: latLng,
     map: map,
     title: "You Are Here",
-    icon: emptyBeer,
+    // icon: emptyBeer,   
   });
 
   queryBreweries();
 });
-
