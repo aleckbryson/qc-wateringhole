@@ -77,3 +77,7 @@ footer {
 .panel-card {
     position: relative; bottom: 90px;
 }
+
+#breweries {
+    font-size: 20px;
+}

@@ -21,7 +21,9 @@ function createRow(brewery) {
   newLink.attr("href", "https://www.google.com/maps/dir/?api=1&origin=" + userPos.coords.latitude + "," + userPos.coords.longitude + "&destination=" + brewery.latitude + "," +brewery.longitude)
   newLink.attr("target", "_blank");
   newLink.addClass("panel-block");
-  newLink.text(brewery.name + " " + brewery.durationFromUser + " away from you");
+  var milesAway = brewery.durationFromUser; 
+  // $("#breweries").css("font-style: italic", milesAway);
+  newLink.text(brewery.name + " - " + milesAway + " away from you");
   $("#breweries").append(newLink);
 
   var newSpan = $("<span>");
@@ -128,6 +130,7 @@ function randomBrewery() {
   $("#random-brewname").append(newBrew);
   $("#brewname-content").append(brewCon);
   
+  //if website isn't available then webdite link will not append
   if (brewery.website_url !== "") {
     website.text("WEBSITE:  " + brewery.website_url);
     $("#brewname-content2").attr("href", brewery.website_url);
