@@ -127,27 +127,6 @@ function randomBrewery() {
   brewCon.addClass("content");
   brewCon.text("ADDRESS:  " + brewery.street + ", " + brewery.city + ", " + brewery.state);
   website.addClass("content");
-
-  // if (brewery.name === "Hyde Brewing") {
-  //   var brewImg = $("<img>");
-  //   brewImg.addClass("image is-4by3");
-  //   brewImg.attr('src', breweryImages[0])
-  //   $("#brewery-image").append(brewImg)
-  // }
-
-  // if (brewery.name === "Blue Blaze Brewing") {
-  //   var brewImg = $("<img>");
-  //   brewImg.addClass("image is-4by3");
-  //   brewImg.attr('src', breweryImages[1])
-  //   $("#brewery-image").append(brewImg)
-  // }
-
-  // if (brewery.name === "Legion Brewing Company") {
-  //   var brewImg = $("<img>");
-  //   brewImg.addClass("image is-4by3");
-  //   brewImg.attr('src', breweryImages[2])
-  //   $("#brewery-image").append(brewImg)
-  }
   
   $("#random-brewname").append(newBrew);
   $("#brewname-content").append(brewCon);
