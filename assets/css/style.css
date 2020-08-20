@@ -61,16 +61,24 @@ footer {
 }
 
 #random-brewname {
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 35px;
-    font-weight: 1100;
+    font-family: 'Bangers', cursive;
+    color: black;
 }
 
 #brewname-content {
     font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 25px;
+    font-size: 20px;
+}
+
+#brewname-content2 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 20px;
 }
 
 .panel-card {
     position: relative; bottom: 90px;
+}
+
+#breweries {
+    font-size: 20px;
 }

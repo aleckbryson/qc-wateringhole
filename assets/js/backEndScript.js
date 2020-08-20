@@ -21,7 +21,9 @@ function createRow(brewery) {
   newLink.attr("href", "https://www.google.com/maps/dir/?api=1&origin=" + userPos.coords.latitude + "," + userPos.coords.longitude + "&destination=" + brewery.latitude + "," +brewery.longitude)
   newLink.attr("target", "_blank");
   newLink.addClass("panel-block");
-  newLink.text(brewery.name + " " + brewery.durationFromUser + " away from you");
+  var milesAway = brewery.durationFromUser; 
+  // $("#breweries").css("font-style: italic", milesAway);
+  newLink.text(brewery.name + " - " + milesAway + " away from you");
   $("#breweries").append(newLink);
 
   var newSpan = $("<span>");
@@ -116,17 +118,26 @@ function randomBrewery() {
   // need to pick from the previously generated list of breweries 
   var brewery = breweries[Math.floor(Math.random() * breweries.length)];
   console.log(brewery)
+  var brewImg = $("<img>");
   var newBrew = $("<p>");
+  var brewCon = $("<div>")
+  var website = $("<a>")
   newBrew.addClass("title is-4");
   newBrew.text(brewery.name);
+  brewCon.addClass("content");
+  brewCon.text("ADDRESS:  " + brewery.street + ", " + brewery.city + ", " + brewery.state);
+  website.addClass("content");
+  
+  //appending random brewery name and address and website
   $("#random-brewname").append(newBrew);
-
-  // var newLink = $("<a>");
-  // newLink.addClass("panel-block");
-  // newLink.text(brewery.name);
-  // $("#breweries").append(newLink);
-
-  // console.log(breweryName);
+  $("#brewname-content").append(brewCon);
+  
+  //if website isn't available then webdite link will not append
+  if (brewery.website_url !== "") {
+    website.text("WEBSITE:  " + brewery.website_url);
+    $("#brewname-content2").attr("href", brewery.website_url);
+    $("#brewname-content2").append(website);
+  }
 }
 
 $("#beer-button").on("click", function () {

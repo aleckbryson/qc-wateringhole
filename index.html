@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Queen City Watering Hole</title>
-    <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <!-- Bulma Version 0.9.0-->
@@ -69,15 +68,18 @@
                         <p class="panel-heading" id="beer-header">
                             YOUR BEER OPTIONS!
                         </p>
-                        <div id="map"></div>
-                        <div id="breweries"></div>
-                        <div style="background-color: white;"></div>
-                        <div class="panel-block" id="random-option">
-                          <button class="button is-link is-outlined is-fullwidth" id="random-button">
-                            CAN'T CHOOSE? WE GOT YOU!
-                            <p id= "random-button"></p>
-                          </button>
-                          
+                        <div class="box">
+                            <div id="map"></div>
+                            <br>
+                            <div id="breweries"></div>
+                            <!-- <br> -->
+                            <div style="background-color: white;"></div>
+                            <div class="panel-block" id="random-option">
+                              <button class="button is-link is-outlined is-fullwidth" id="random-button">
+                                CAN'T CHOOSE? WE GOT YOU!
+                                <p id= "random-button"></p>
+                              </button>
+                            </div>
                         </div>
                     </nav>
                 </div>
@@ -90,38 +92,27 @@
                         <p class="panel-heading" id="beer-header">
                           HERE'S YOUR BREWERY! ENJOY!
                         </p>
-                        <div class="card">
-                            <div class="card-image">
-                              <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                        <div class="card box">
+                            <!-- <div class="card-image">
+                              <figure class="image is-4by3" id="brewery-image">
+                                <img src="" alt="Placeholder image">
                               </figure>
-                            </div>
+                            </div> -->
                             <div class="card-content">
                               <div class="media">
                                 <div class="media-content">
-<<<<<<< HEAD
-                                  <p class="title is-4" id="random-brewname">Brewery Name</p>
-=======
-                                  <p class="title is-4" id="random-brewname"></p>
->>>>>>> 5a50f13dc787521460ac8cce9a9d0f44a535df5a
+                                  <p class="title is-2" id="random-brewname"></p>
                                 </div>
                               </div>
-                              <div class="content" id="brewname-content">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Phasellus nec iaculis mauris.
-                              </div>
+                              <div class="content" id="brewname-content"></div>
+                              <a class="content" id="brewname-content2"></a>
                             </div>
                           </div>
                     </nav>
                 </div>
-<<<<<<< HEAD
-            </div> 
-=======
             </div>
->>>>>>> 5a50f13dc787521460ac8cce9a9d0f44a535df5a
         </div>
     </section>
-    <script async type="text/javascript" src="../js/bulma.js"></script>
     <script defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALpzkW8PTJ7k9963498EIvN2uIgfIuYgI&callback=initMap">
         </script>
@@ -133,21 +124,6 @@
                 options.url = 'https://uncc-cors-proxy.herokuapp.com/' + options.url;
             }
         });
-<<<<<<< HEAD
-
-        $("#random-button").on("click", function() {
-            $(".show-options").addClass("is-hidden");
-            $(".random-option").addClass("is-flex-widescreen").removeClass("is-hidden");
-
-        });
-
-        
-
-    </script>
-    <script defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALpzkW8PTJ7k9963498EIvN2uIgfIuYgI&callback=initMap">
-=======
->>>>>>> 5a50f13dc787521460ac8cce9a9d0f44a535df5a
     </script>
     <script src="./assets/js/backEndScript.js"></script>
 
