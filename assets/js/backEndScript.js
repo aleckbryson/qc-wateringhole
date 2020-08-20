@@ -6,6 +6,11 @@ const emptyBeer = "./assets/img/emptybeer.png";
 var beerLat;
 var beerLon;
 
+var breweryImages = ["https://qcexclusive.com/wp-content/uploads/2017/09/Suffolk-Punch-and-Hyde-Brewing-101-of-206-1170x780.jpg", 
+"https://pbs.twimg.com/media/DZYRDl0WAAAx1-Q.jpg",
+"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQOvZDZEgUUWUyTR87L7ZBPvTsgJEGWKaoOQw&usqp=CAU"
+]
+
 function createMarker(brewery) {
   var latLng = new google.maps.LatLng(brewery.latitude, brewery.longitude);
   var marker = new google.maps.Marker({
@@ -118,6 +123,7 @@ function randomBrewery() {
   // need to pick from the previously generated list of breweries 
   var brewery = breweries[Math.floor(Math.random() * breweries.length)];
   console.log(brewery)
+  var brewImg = $("<img>");
   var newBrew = $("<p>");
   var brewCon = $("<div>")
   var website = $("<a>")
@@ -126,6 +132,27 @@ function randomBrewery() {
   brewCon.addClass("content");
   brewCon.text("ADDRESS:  " + brewery.street + ", " + brewery.city + ", " + brewery.state);
   website.addClass("content");
+
+  if (brewery.name === "Hyde Brewing") {
+    var brewImg = $("<img>");
+    brewImg.addClass("image is-4by3");
+    brewImg.attr('src', breweryImages[0])
+    $("#brewery-image").append(brewImg)
+  }
+
+  if (brewery.name === "Blue Blaze Brewing") {
+    var brewImg = $("<img>");
+    brewImg.addClass("image is-4by3");
+    brewImg.attr('src', breweryImages[1])
+    $("#brewery-image").append(brewImg)
+  }
+
+  if (brewery.name === "Legion Brewing Company") {
+    var brewImg = $("<img>");
+    brewImg.addClass("image is-4by3");
+    brewImg.attr('src', breweryImages[2])
+    $("#brewery-image").append(brewImg)
+  }
   
   $("#random-brewname").append(newBrew);
   $("#brewname-content").append(brewCon);
