@@ -128,6 +128,7 @@ function randomBrewery() {
   brewCon.text("ADDRESS:  " + brewery.street + ", " + brewery.city + ", " + brewery.state);
   website.addClass("content");
   
+  //appending random brewery name and address and website
   $("#random-brewname").append(newBrew);
   $("#brewname-content").append(brewCon);
   
