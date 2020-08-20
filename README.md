@@ -19,9 +19,30 @@ The QC watering hole should:
 
 This is the homescreen of the app, user clicks allow in the upper left hand corner for app to register user's location.  User the clicks the "find my beer" button.
 
-<img src = "./img/wheres-my-beer.PNG" alt = "Where's my beer app">
+<img src = "/img/wheres-my-beer.png" alt = "Where's my beer app homepage">
 
 App now shows the user a map with their location as well as the pinned locations of the breweries.  
 
-<img scr = "./img/wheres-my-beer-map.PNG" alt = "Map with list of breweries">
+<img scr = "/img/wheres-my-beer-map.png" alt = "Map with list of breweries">
+
+
+TECHNOLOGIES USED:
+
+Bulma.io-for the layout
+google maps api for user location, brewery directions and location
+openbrewery DB API for the list of locale breweries
+
+
+----------------------------------------------------
+
+Challenges: 
+The biggest challenges were working with the google api in order to track user location as well as supply the list of breweries in the area.
+Another major challenge was having full functionality of the "choose my beer" button to pick a random brewery for the USER
+
+-----------------------------------------------------
+
+
+git hub pages link : https://aleckbryson.github.io/qc-wateringhole/
+
+
 
