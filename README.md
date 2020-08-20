@@ -43,6 +43,5 @@ Another major challenge was having full functionality of the "choose my beer" bu
 
 
 git hub pages link : https://aleckbryson.github.io/qc-wateringhole/
-
-
+powerpoint link: https://docs.google.com/presentation/d/1UBegkeBVinb_Id7SEsP7WgX_EztTwdj1WqWMlQQyD-U/edit#slide=id.p
 
