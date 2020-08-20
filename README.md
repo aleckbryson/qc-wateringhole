@@ -19,11 +19,11 @@ The QC watering hole should:
 
 This is the homescreen of the app, user clicks allow in the upper left hand corner for app to register user's location.  User the clicks the "find my beer" button.
 
-<img src = "/img/wheres-my-beer.png" alt = "Where's my beer app homepage">
+<img src = "img/wheres-my-beer.jpg" alt = "Where's my beer app homepage">
 
 App now shows the user a map with their location as well as the pinned locations of the breweries.  
 
-<img scr = "/img/wheres-my-beer-map.png" alt = "Map with list of breweries">
+<img src = "img/wheres-my-beer-map.jpg" alt = "Map with list of breweries">
 
 
 TECHNOLOGIES USED:
